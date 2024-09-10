@@ -1,0 +1,15 @@
+.nav {
+  display: flex;
+  gap: 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: #ecf0f1;
+  font-size: 18px;
+}
+
+.activeLink {
+  font-size: 18px;
+  color: #3498db;
+}

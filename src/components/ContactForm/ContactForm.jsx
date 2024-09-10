@@ -1,0 +1,61 @@
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../../redux/contacts/contactsOps';
+import { selectAllContacts } from '../../redux/contacts/contactsSelectors';
+import styles from './ContactForm.module.css';
+
+const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectAllContacts);
+
+  const [name, setName] = useState('');
+  const [number, setnumber] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isDuplicate = contacts.some(
+      (contact) =>
+        contact.name.toLowerCase() === name.toLowerCase() ||
+        contact.number === number
+    );
+
+    if (isDuplicate) {
+      alert(`${name} is already in contacts.`);
+      return;
+    }
+
+    dispatch(addContact({ name, number }));
+    setName('');
+    setnumber('');
+  };
+
+  return (
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <label className={styles.label}>
+        <input
+          placeholder="Rick Sanchez"
+          className={styles.input}
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </label>
+      <label className={styles.label}>
+        <input
+          placeholder="+1234567890"
+          className={styles.input}
+          type="tel"
+          value={number}
+          onChange={(e) => setnumber(e.target.value)}
+          required
+        />
+      </label>
+      <button className={styles.button} type="submit">
+        Add Contact
+      </button>
+    </form>
+  );
+};
+
+export default ContactForm;

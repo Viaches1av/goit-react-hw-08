@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateContact, fetchContacts } from '../../redux/contacts/contactsOps';
+import { updateContact, fetchContacts } from '../../redux/contacts/operations';
 import styles from './EditContactModal.module.css';
 
 const EditContactModal = ({ contact, onClose }) => {

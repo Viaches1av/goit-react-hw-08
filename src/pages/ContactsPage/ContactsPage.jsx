@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import ContactList from '../../components/ContactList/ContactList';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import SearchBox from '../../components/SearchBox/SearchBox';
-import { fetchContacts, deleteContact } from '../../redux/contacts/contactsOps';
-import { selectFilteredContacts } from '../../redux/contacts/contactsSelectors';
+import { fetchContacts, deleteContact } from '../../redux/contacts/operations';
+import { selectFilteredContacts } from '../../redux/contacts/selectors';
 import styles from './ContactsPage.module.css';
 
 const ContactsPage = () => {

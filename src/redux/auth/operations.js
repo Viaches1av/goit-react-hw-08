@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { clearContacts } from '../contacts/slice';
 
 axios.defaults.baseURL = 'https://connections-api.goit.global';
 
@@ -29,9 +30,7 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post('/users/login', credentials);
-
       setAuthHeader(data.token);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -43,6 +42,8 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
     clearAuthHeader();
+
+    thunkAPI.dispatch(clearContacts());
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

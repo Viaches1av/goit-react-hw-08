@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/operations';
 import { selectUser } from '../../redux/auth/selectors';
+import { clearContacts } from '../../redux/contacts/slice';
 import styles from './UserMenu.module.css';
 
 const UserMenu = () => {
@@ -8,7 +9,9 @@ const UserMenu = () => {
   const user = useSelector(selectUser);
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logout()).then(() => {
+      dispatch(clearContacts());
+    });
   };
 
   return (

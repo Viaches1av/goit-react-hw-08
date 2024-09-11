@@ -68,6 +68,6 @@ const contactsSlice = createSlice({
   },
 });
 
-export const { setSelectedContact, openModal, closeModal } =
+export const { setSelectedContact, openModal, closeModal, clearContacts } =
   contactsSlice.actions;
 export default contactsSlice.reducer;
